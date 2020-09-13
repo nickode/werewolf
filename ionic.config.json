@@ -1,0 +1,7 @@
+{
+  "name": "wolf",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
