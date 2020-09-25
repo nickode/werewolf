@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {CreateComponent} from '../app/create/create.component';
+import { JoinComponent } from './join/join.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path:'create',
     component: CreateComponent
+  }
+  ,
+  {
+    path:'join',
+    component: JoinComponent
   }
 ];
 

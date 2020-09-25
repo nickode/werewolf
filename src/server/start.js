@@ -65,7 +65,7 @@ app.post('/create', (req, res) => {
 
     initConnection()
     connection.connect()
-    connection.query(`INSERT INTO games VALUES (${req.body.creator},
+    connection.query(`INSERT INTO games VALUES (id,${req.body.creator},
         ${req.body.players},
         ${req.body.wolves}, 
         ${req.body.hunter}, 
@@ -75,12 +75,22 @@ app.post('/create', (req, res) => {
        
        console.log(fields)
        console.log('Game created successfully')
+       console.log(error)
        res.send(req.body)
     })
     connection.end()
 })
 
-app.get('/games')
+app.get('/join/:gameID', (req, res) => {
+    initConnection()
+    connection.connect()
+    connection.query(`SELECT * FROM games WHERE id=${req.body.params.gameID}`,(error, results, fields) => {
+
+        res.send(results.json());
+    })
+    connection.end()
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
