@@ -5,13 +5,13 @@
       <ion-col><ion-textarea (ionChange)="setPlayerName($event)" placeholder="Your name"></ion-textarea></ion-col>
     </ion-row>
     <ion-row>
-      <ion-col><ion-input type="number" (ionChange)="setJoinHost($event)" placeholder="Name of host (Join only)"></ion-input></ion-col>
+      <ion-col><ion-textarea (ionChange)="setJoinHost($event)" placeholder="Name of host (Join only)"></ion-textarea></ion-col>
     </ion-row>
   </ion-grid>
   
   <ion-row>
     <ion-col><ion-button href="/create">Create Game</ion-button></ion-col>
-    <ion-col><ion-button href="/join" (ionClick)="joinGame()">Join Game</ion-button></ion-col>
+    <ion-col><ion-button (click)="joinGame()">Join Game</ion-button></ion-col>
   </ion-row>
   
 </ion-content>

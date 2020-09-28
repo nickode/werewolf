@@ -29,8 +29,15 @@ export class HomePage {
 
   public joinGame()
   {
-    this.http.get(`localhost:3000/join/${this.hostName}`).subscribe((val) => {
-      console.log(val)
+
+    this.http.post(`http://localhost:3000/join/`, {
+      "playerName":this.playerName,
+      "gameHostName":this.hostName
+    }).subscribe((val) => {
+      if(val[0].creator)
+      {
+        
+      }
     })
   }
 
