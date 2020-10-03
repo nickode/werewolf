@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>create</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = container>
+  <ion-title>Game Settings</ion-title>
+  <ion-grid fixed="true">
+    <ion-row>
+      <ion-col>How many players?</ion-col>
+      <ion-item><ion-col><ion-input [(ngModel)]="players" (ionChange)="setPlayers($event)" type="number"></ion-input></ion-col></ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>How many wolves?</ion-col>
+      <ion-item><ion-col><ion-input [(ngModel)]="wolves" (ionChange)="setWolves($event)" type="number"></ion-input></ion-col></ion-item>
+    </ion-row>
+    <ion-row>
+      <ion-col>Hunter</ion-col>
+      <ion-col><ion-toggle [(ngModel)]="hunter" (ionChange)="setHunter($event)"></ion-toggle></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Sear</ion-col>
+      <ion-col><ion-toggle [(ngModel)]="sear" (ionChange)="setSear($event)"></ion-toggle></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Bear Watcher</ion-col>
+      <ion-col><ion-toggle [(ngModel)]="bearwatcher" (ionChange)="setBearwatcher($event)"></ion-toggle></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>Medic</ion-col>
+      <ion-col><ion-toggle [(ngModel)]="medic" (ionChange)="setMedic($event)"></ion-toggle></ion-col>
+    </ion-row>
+  
+  
+  <ion-row>
+    <ion-col><ion-button (click)="createGame()">Create Game</ion-button></ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
