@@ -21,7 +21,8 @@ var connection = mysql.createConnection({
 })
 
 // Middleware
-app.use(cors({origin:false}))
+
+app.use(cors())
 app.use(bodyparser.json() )
 app.use((req,res,next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -65,7 +66,7 @@ app.post('/create', (req, res) => {
 
     initConnection()
     connection.connect()
-    connection.query(`INSERT INTO games VALUES (${req.body.creator},
+    connection.query(`INSERT INTO games VALUES (id,${req.body.creator},
         ${req.body.players},
         ${req.body.wolves}, 
         ${req.body.hunter}, 
@@ -75,12 +76,60 @@ app.post('/create', (req, res) => {
        
        console.log(fields)
        console.log('Game created successfully')
+       console.log(error)
        res.send(req.body)
     })
     connection.end()
 })
 
-app.get('/games')
+app.get('/join/:gameHostName', (req, res) => {
+    initConnection()
+    connection.connect()
+    connection.query(`SELECT * FROM games WHERE id=${req.body.params.gameHostName}`,(error, results, fields) => {
+
+        res.send(results.json());
+    })
+    
+})
+
+app.post('/join/', (req, res) => {
+
+    initConnection()
+    connection.connect()
+
+    connection.query(`SELECT * FROM games WHERE creator='${req.body.gameHostName}'`, (error, results, fields) => {
+        if(error)
+        {
+            console.log('sending error...')
+            console.log(error)
+            res.send({'message':'Game not found'})
+        }
+        else{
+            //console.log(results)
+            connection.query(`INSERT INTO players VALUES ('${req.body.playerName}', '${req.body.gameHostName}')`,(error2, results2, fields2) => {
+                if(error2)
+                {
+                    console.log(error2)
+                    res.send({'message':'Unexepected error when trying to join'})
+                }
+                else if(results2){
+                    console.log(results)
+                    res.send(results)
+                }
+                
+          })
+        }
+       
+
+    })
+
+
+    
+   
+})
+
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)

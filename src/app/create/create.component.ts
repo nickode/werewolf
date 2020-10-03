@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-create',
@@ -8,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CreateComponent implements OnInit { // Consider CreateComponent to be like an "object" in java. You use methods from this object to manipulate the HTML and CSS of this "page"
 
+  public creator:string
   public players:number
   public wolves:number
   public hunter:boolean
@@ -15,7 +17,7 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
   public bearwatcher:boolean
   public medic:boolean
 
-  constructor(private http: HttpClient)
+  constructor(private http: HttpClient, private storage:Storage)
   {
     this.players = 0
     this.wolves = 0
@@ -23,6 +25,13 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
     this.sear = false
     this.bearwatcher = false
     this.medic = false
+    
+    this.storage.ready().then(() => {
+      this.storage.get('playerName').then((val) => {
+        this.creator = val
+      })
+    })
+
   }
 
   ngOnInit()
@@ -36,7 +45,7 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
 
 
     this.http.post("http://localhost:3000/create",
-    {players:this.players, wolves:this.wolves, hunter:this.hunter, sear:this.sear, bearwatcher:this.bearwatcher, medic:this.medic}, {params:{players:this.players.toString()}})
+    {creator: this.creator, players:this.players, wolves:this.wolves, hunter:this.hunter, sear:this.sear, bearwatcher:this.bearwatcher, medic:this.medic}, {params:{players:this.players.toString()}})
     .subscribe((val) => {
       console.log(val)
     })
