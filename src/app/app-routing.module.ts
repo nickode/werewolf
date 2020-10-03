@@ -4,10 +4,6 @@ import {CreateComponent} from '../app/create/create.component';
 
 import { HomeComponent } from './home/home.component';
 
-
-import { LobbyComponent } from './lobby/lobby.component';
-
-
 import { JoinComponent } from './join/join.component';
 
 
@@ -30,18 +26,22 @@ const routes: Routes = [
     component: CreateComponent
   },
   {
-    path: 'lobby',
-    component: LobbyComponent
-  }
-  ,
-  {
     path:'join',
     component: JoinComponent
   },
   {
-    path: 'lobby',
-    loadChildren: () => import('./lobby/lobby.module').then( m => m.LobbyPageModule)
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./pages/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'join',
+    loadChildren: () => import('./pages/join/join.module').then( m => m.JoinPageModule)
   }
+
 ];
 
 @NgModule({

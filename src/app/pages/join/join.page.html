@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>join</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list id="playerList">
+    <div *ngFor="let player of players">
+        <ion-item>
+            {{ player }}
+        </ion-item>
+    </div>
+</ion-list>
+<ion-button (click)="showPlayers()">1</ion-button>
+<ion-button (click)="showGame()">2</ion-button>
+</ion-content>
