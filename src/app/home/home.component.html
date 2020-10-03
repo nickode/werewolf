@@ -1,17 +1,68 @@
 
 <ion-content>
-  <ion-grid fixed="true">
+
+  <!-- Header -->
+  <ion-toolbar>
+    <ion-title class="HomeHeader">Werewolf</ion-title>
+  </ion-toolbar>
+
+  <br>
+  <br>
+  <br>
+  <ion-grid>
+
+    <!-- Username field -->
     <ion-row>
       <ion-col><ion-textarea (ionChange)="setPlayerName($event)" placeholder="Your name"></ion-textarea></ion-col>
     </ion-row>
+    <!--
     <ion-row>
+<<<<<<< HEAD:src/app/home/home.component.html
       <ion-col><ion-textarea (ionChange)="setGameHostName($event)" placeholder="Name of host (Join only)"></ion-textarea></ion-col>
+=======
+<<<<<<< HEAD
+      <ion-col><ion-label class="HomeTitle">Username:</ion-label></ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col><ion-input type="text"></ion-input></ion-col>
+    </ion-row>
+  -->
+
+    <!-- Game ID field -->
+    <ion-row style="padding-top: 20%;">
+      <ion-item style="padding-left: 5%;">
+        <ion-label position="floating"><ion-icon style="font-size: 20px;" name="game-controller-outline"></ion-icon> Game ID:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-col><ion-textarea (ionChange)="setJoinHost($event)" placeholder="Name of host (Join only)"></ion-textarea></ion-col>
+
+    </ion-row>
+    <!--
+    <ion-row style="padding-top: 10%;">
+      <ion-col><ion-label class="HomeTitle">Game ID:</ion-label></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col><ion-input type="text"></ion-input></ion-col>
+    </ion-row>
+    -->
+   
+    <!-- Buttons-->
+    <ion-row style="padding-top: 40%; padding-bottom: 30%;">
+      <ion-col><ion-button style="width: 50%;" size="medium" color="medium" shape="round" href="/create">Create Game</ion-button></ion-col>
+      <ion-col><ion-button style="width: 50%;" size="medium" color="medium" shape="round" href="/join">Join Game</ion-button></ion-col>
+    </ion-row>
+
   </ion-grid>
+
+
+ <!-- <img src="assets/images/wolfpic.png">Test</img> -->
+
   
   <ion-row>
     <ion-col><ion-button (click)="createGame()">Create Game</ion-button></ion-col>
     <ion-col><ion-button (click)="joinGame()">Join Game</ion-button></ion-col>
   </ion-row>
   
+
 </ion-content>
