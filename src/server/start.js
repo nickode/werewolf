@@ -32,6 +32,7 @@ app.use((req,res,next) => {
 })
 
 
+
 function initConnection()
 {
     connection = mysql.createConnection({
@@ -42,15 +43,33 @@ function initConnection()
     })
 }
 
-app.get('/games/:id', (req, res) => 
+app.get('/games/:hostname', (req, res) => 
 {
     initConnection()
 
     connection.connect()
     
-    connection.query(`SELECT * FROM games WHERE id = ${req.params.id} `, (error, results, fields) => {
+    connection.query(`SELECT * FROM games WHERE hostname = '${req.params.hostname}' `, (error, results, fields) => {
+        if(error)
+        console.log(error)
        console.log(results)
        res.send(results)
+    })
+
+    connection.end()
+})
+
+app.get('/players/:hostname', (req,res) =>{
+
+    initConnection()
+
+    connection.connect()
+
+    connection.query(`SELECT * FROM players WHERE hostname = ? `, [req.params.hostname], (error, results, fields) => {
+        if(error)
+        console.log(error)
+
+        res.send(results)
     })
 
     connection.end()
@@ -66,7 +85,7 @@ app.post('/create', (req, res) => {
 
     initConnection()
     connection.connect()
-    connection.query(`INSERT INTO games VALUES (id,${req.body.creator},
+    connection.query(`INSERT INTO games VALUES ('${req.body.hostname}',
         ${req.body.players},
         ${req.body.wolves}, 
         ${req.body.hunter}, 

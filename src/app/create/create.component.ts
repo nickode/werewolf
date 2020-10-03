@@ -9,7 +9,7 @@ import { Storage } from '@ionic/storage';
 })
 export class CreateComponent implements OnInit { // Consider CreateComponent to be like an "object" in java. You use methods from this object to manipulate the HTML and CSS of this "page"
 
-  public creator:string
+  public hostname:string
   public players:number
   public wolves:number
   public hunter:boolean
@@ -19,6 +19,12 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
 
   constructor(private http: HttpClient, private storage:Storage)
   {
+
+
+  }
+
+  ngOnInit()
+  {
     this.players = 0
     this.wolves = 0
     this.hunter = false
@@ -27,16 +33,15 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
     this.medic = false
     
     this.storage.ready().then(() => {
-      this.storage.get('playerName').then((val) => {
-        this.creator = val
+      this.storage.get('username').then((val) => {
+        
+        this.hostname = val
+        
+        
+      }).then(() => {
+        console.log(this.hostname)
       })
     })
-
-  }
-
-  ngOnInit()
-  {
-
   }
 
   //createGame() in the HTML side
@@ -45,7 +50,7 @@ export class CreateComponent implements OnInit { // Consider CreateComponent to 
 
 
     this.http.post("http://localhost:3000/create",
-    {creator: this.creator, players:this.players, wolves:this.wolves, hunter:this.hunter, sear:this.sear, bearwatcher:this.bearwatcher, medic:this.medic}, {params:{players:this.players.toString()}})
+    {hostname: this.hostname, players:this.players, wolves:this.wolves, hunter:this.hunter, sear:this.sear, bearwatcher:this.bearwatcher, medic:this.medic}, {params:{players:this.players.toString()}})
     .subscribe((val) => {
       console.log(val)
     })
