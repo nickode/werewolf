@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import {Player} from '../player';
 
 @Component({
   selector: 'app-join',
@@ -12,7 +11,7 @@ import {Player} from '../player';
 export class JoinPage implements OnInit {
 
   public game:any
-  public players = [1,2,3]
+  public players:any
   public hostname:string
   public username:string
 
@@ -38,7 +37,8 @@ export class JoinPage implements OnInit {
 
         }).then(() => {
           this.http.get(`http://localhost:3000/players/${this.hostname}`).subscribe(players => {
-            this.players
+            this.players = players
+            console.log(this.players)
           })
         })
       })

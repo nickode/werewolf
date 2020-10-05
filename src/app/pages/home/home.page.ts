@@ -35,6 +35,7 @@ export class HomePage implements OnInit {
       this.storage.set('username', this.playerName).then(() => {
         this.storage.set('hostname', this.gameHostName).then(() => {
           this.router.navigate(['/join'])
+          console.log(this.storage.get('hostname'))
         })
       })
       

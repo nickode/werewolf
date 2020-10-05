@@ -31,13 +31,17 @@ app.use((req,res,next) => {
     next();
 })
 
-var pool = mysql.createPool({
-    connectionLimit:20,
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'wolfdb'
-})
+
+
+function initConnection()
+{
+    connection = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'root',
+        database: 'wolfdb'
+    })
+}
 
 app.get('/games/:hostname', (req, res) => 
 {
