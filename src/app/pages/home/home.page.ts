@@ -9,8 +9,6 @@ import {Router}from '@angular/router';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  public playerName;
-  public gameHostName;
 
   constructor(private http: HttpClient, private storage: Storage, private router: Router) { }
 
@@ -19,39 +17,15 @@ export class HomePage implements OnInit {
 
   public setPlayerName(event)
   {
-    this.playerName = event.detail.value
-    console.log(this.playerName)
+    this.storage.ready().then(() => {
+      this.storage.set('username',event.detail.value)
+    })
   }
 
   public setGameHostName(event)
   {
-    this.gameHostName = event.detail.value
-  }
-
-  public joinGame()
-  {
-
     this.storage.ready().then(() => {
-      this.storage.set('username', this.playerName).then(() => {
-        this.storage.set('hostname', this.gameHostName).then(() => {
-          this.router.navigate(['/join'])
-          console.log(this.storage.get('hostname'))
-        })
-      })
-      
-    })
-  }
-
-  public createGame()
-  {
-    this.storage.ready().then(() => {
-      console.log(this.playerName)
-      this.storage.set('username', this.playerName).then(() => {
-        this.storage.set('hostname', this.gameHostName).then(() => {
-          this.router.navigate(['/create'])
-        })
-      })
-      
+      this.storage.set('hostname',event.detail.value)
     })
   }
 

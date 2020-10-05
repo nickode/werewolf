@@ -14,7 +14,7 @@
 
       <ion-item style="padding-left: 5%;">
         <ion-label position="floating"><ion-icon style="font-size: 20px;" name="game-controller-outline"></ion-icon>Username:</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" (ionChange)="setPlayerName($event)"></ion-input>
       </ion-item>
     </ion-row>
 
@@ -23,14 +23,14 @@
     <ion-row style="padding-top: 20%;">
       <ion-item style="padding-left: 5%;">
         <ion-label position="floating"><ion-icon style="font-size: 20px;" name="game-controller-outline"></ion-icon>Hostname to join:</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" (ionChange)="setGameHostName($event)"></ion-input>
       </ion-item>
 
     </ion-row>
 
     <ion-row style="padding-top: 40%; padding-bottom: 30%;">
-      <ion-col><ion-button (click)="createGame()" style="width: 100%;" size="medium" color="medium" shape="round" >Create Game</ion-button></ion-col>
-      <ion-col><ion-button (click)="joinGame()" style="width: 100%;" size="medium" color="medium" shape="round" >Join Game</ion-button></ion-col>
+      <ion-col><ion-button href="/create" style="width: 100%;" size="medium" color="medium" shape="round" >Create Game</ion-button></ion-col>
+      <ion-col><ion-button href="/join" style="width: 100%;" size="medium" color="medium" shape="round" >Join Game</ion-button></ion-col>
     </ion-row>
 
   </ion-grid>

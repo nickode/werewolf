@@ -12,37 +12,17 @@ export class JoinPage implements OnInit {
 
   public game:any
   public players:any
-  public hostname:string
-  public username:string
 
-  constructor(private http:HttpClient, private router:Router, private storage: Storage) { }
+  constructor(private http:HttpClient, private router:Router, private stg: Storage) { }
 
   ngOnInit() {
 
-    this.storage.ready().then(() => {
-
-      this.storage.get('hostname').then(hostname => {
-        this.hostname = hostname
-
-        this.storage.get('username').then(username =>{
-          this.username = username
-
-        }).then(() => {
-          console.log(this.username)
-          console.log(this.hostname)
-
-          this.http.get(`http://localhost:3000/games/${this.hostname}`).subscribe(game => {
-            this.game = game
-          })
-
-        }).then(() => {
-          this.http.get(`http://localhost:3000/players/${this.hostname}`).subscribe(players => {
-            this.players = players
-            console.log(this.players)
-          })
-        })
+    this.stg.ready().then(() => {
+      this.stg.get('hostname').then(host => {
+        console.log(host)
       })
     })
+
   }
 
   getPlayers()
