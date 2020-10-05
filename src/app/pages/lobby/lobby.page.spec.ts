@@ -22,3 +22,4 @@ describe('LobbyPage', () => {
     expect(component).toBeTruthy();
   });
 });
+
