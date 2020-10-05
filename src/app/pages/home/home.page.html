@@ -16,21 +16,14 @@
   <ion-grid>
 
     <!-- Username field -->
-    <ion-row>
+    <ion-row  style="padding-top: 20%;">
+      <ion-item style="padding-left: 5%;">
+        <ion-label position="floating"><ion-icon style="font-size: 20px;" name="person-circle-outline"></ion-icon> User ID:</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
       <ion-col><ion-textarea (ionChange)="setPlayerName($event)" placeholder="Your name"></ion-textarea></ion-col>
     </ion-row>
-    <!--
-    <ion-row>
-<<<<<<< HEAD:src/app/home/home.component.html
-      <ion-col><ion-textarea (ionChange)="setGameHostName($event)" placeholder="Name of host (Join only)"></ion-textarea></ion-col>
-=======
-<<<<<<< HEAD
-      <ion-col><ion-label class="HomeTitle">Username:</ion-label></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col><ion-input type="text"></ion-input></ion-col>
-    </ion-row>
-  -->
 
     <!-- Game ID field -->
     <ion-row style="padding-top: 20%;">
